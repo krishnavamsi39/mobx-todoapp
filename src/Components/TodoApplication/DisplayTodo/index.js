@@ -6,7 +6,7 @@ class DisplayTodo extends Component {
   displayEachTodo = () => {
     let filteredList = this.props.todoStore.todolist;
     const rows = filteredList.map(todo => {
-      return <EachTodoItem todo={todo} />;
+      return <EachTodoItem todo={todo} todoStore={this.props.todoStore} />;
     });
 
     return rows;

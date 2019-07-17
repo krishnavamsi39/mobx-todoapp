@@ -11,6 +11,7 @@ export default class Model {
     this.isCompleted = completed;
   }
   isTodoCompleted() {
-    this.completed = !this.completed;
+    this.isCompleted = !this.isCompleted;
   }
+  deleteTodo() {}
 }
