@@ -10,9 +10,6 @@ class Todostore {
     this.id += 1;
     this.todolist.push(new Model(this, this.id, message, false));
   }
-  @action
-  deleteTodo(id) {
-    this.todolist = this.todolist.filter(obj => obj.id !== id);
-  }
 }
+
 export default Todostore;

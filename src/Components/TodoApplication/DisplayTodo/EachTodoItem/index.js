@@ -15,12 +15,7 @@ class EachTodoItem extends Component {
   handleDelete = () => {
     this.props.todo.deleteTodo();
   };
-  handleMessage = () => {
-    if (!this.props.todo.isCompleted) {
-      return <span>{this.props.todo.todoText} </span>;
-    }
-    return <strike>{this.props.todo.todoText} </strike>;
-  };
+
   render() {
     return (
       <div className="eachdiv">
@@ -40,14 +35,18 @@ class EachTodoItem extends Component {
             isEditable={this.isEditable}
           />
         </div>
-        <div className="imagediv">
-          <img
-            src="assets/index.png"
-            height="20px"
-            width="20px"
-            onClick={this.handleDelete}
-          />
-        </div>
+        {!this.isEditable ? (
+          <div className="imagediv">
+            <img
+              src="assets/index.png"
+              height="20px"
+              width="20px"
+              onClick={this.handleDelete}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     );
   }
