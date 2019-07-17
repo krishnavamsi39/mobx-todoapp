@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-
+import "./style.css";
 class AddTodo extends Component {
   handleTodoText = e => {
     if (e.keyCode === 13 && e.target.value !== "") {
-      console.log(1);
       this.props.todoStore.addTodo(e.target.value);
+      e.target.value = "";
     }
   };
 
@@ -12,7 +12,7 @@ class AddTodo extends Component {
     return (
       <>
         <input
-          className={this.props.TextClass}
+          className="enter-text"
           type="text"
           placeHolder="What needs to be done "
           onChange={this.handleOnchange}
