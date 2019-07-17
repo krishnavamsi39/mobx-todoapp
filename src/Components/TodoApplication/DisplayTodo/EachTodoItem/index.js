@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import "./style.css";
+import EditableText from "./EditableText";
 import { observer } from "mobx-react";
+import { observable } from "mobx";
 @observer
 class EachTodoItem extends Component {
+  @observable isEditable = false;
+  handleEditable = () => {
+    this.isEditable = !this.isEditable;
+  };
   handleToggle = () => {
     this.props.todo.isTodoCompleted();
   };
   handleDelete = () => {
-    this.props.todoStore.deleteTodo(this.props.todo.id);
+    this.props.todo.deleteTodo();
   };
   handleMessage = () => {
     if (!this.props.todo.isCompleted) {
@@ -27,8 +33,12 @@ class EachTodoItem extends Component {
               onClick={this.handleToggle}
             />
             <span class="checkmark" />
-            {this.handleMessage()}
           </label>
+          <EditableText
+            todo={this.props.todo}
+            handleEditable={this.handleEditable}
+            isEditable={this.isEditable}
+          />
         </div>
         <div className="imagediv">
           <img

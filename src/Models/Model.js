@@ -1,11 +1,13 @@
 import { observable } from "mobx";
 
 export default class Model {
+  store;
   id;
   @observable todoText;
   @observable isCompleted;
 
-  constructor(id, message, completed) {
+  constructor(store, id, message, completed) {
+    this.store = store;
     this.id = id;
     this.todoText = message;
     this.isCompleted = completed;
@@ -13,5 +15,10 @@ export default class Model {
   isTodoCompleted() {
     this.isCompleted = !this.isCompleted;
   }
-  deleteTodo() {}
+  editText(message) {
+    this.todoText = message;
+  }
+  deleteTodo() {
+    this.store.todolist.remove(this);
+  }
 }
