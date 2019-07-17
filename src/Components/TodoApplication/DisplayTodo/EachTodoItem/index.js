@@ -6,6 +6,9 @@ class EachTodoItem extends Component {
   handleToggle = () => {
     this.props.todo.isTodoCompleted();
   };
+  handleDelete = () => {
+    this.props.todoStore.deleteTodo(this.props.todo.id);
+  };
   handleMessage = () => {
     if (!this.props.todo.isCompleted) {
       return <span>{this.props.todo.todoText} </span>;
@@ -26,6 +29,14 @@ class EachTodoItem extends Component {
             <span class="checkmark" />
             {this.handleMessage()}
           </label>
+        </div>
+        <div className="imagediv">
+          <img
+            src="assets/index.png"
+            height="20px"
+            width="20px"
+            onClick={this.handleDelete}
+          />
         </div>
       </div>
     );
