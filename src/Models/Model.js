@@ -5,9 +5,12 @@ export default class Model {
   @observable todoText;
   @observable isCompleted;
 
-  constructor(id, title, completed) {
+  constructor(id, message, completed) {
     this.id = id;
-    this.todoText = title;
+    this.todoText = message;
     this.isCompleted = completed;
+  }
+  isTodoCompleted() {
+    this.completed = !this.completed;
   }
 }
