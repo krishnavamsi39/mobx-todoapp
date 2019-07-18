@@ -7,7 +7,11 @@ class TodoApplication extends Component {
   render() {
     return (
       <div class="todo">
-        <AddTodo todoStore={this.props.todoStore} />
+        <AddTodo
+          todoStore={this.props.todoStore}
+          message={""}
+          onPressEnter={this.props.todoStore.addTodo}
+        />
         <DisplayTodo todoStore={this.props.todoStore} />
       </div>
     );

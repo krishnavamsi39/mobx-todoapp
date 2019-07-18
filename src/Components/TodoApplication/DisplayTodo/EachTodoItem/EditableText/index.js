@@ -2,8 +2,10 @@ import React, { Component } from "react";
 
 import { observer } from "mobx-react";
 import "./style.css";
+import { observable } from "mobx";
 @observer
 class EditableText extends Component {
+  @observable todoText = "";
   handleClick = () => {
     this.props.handleEditable();
   };
@@ -13,7 +15,9 @@ class EditableText extends Component {
       this.props.handleEditable();
     }
   };
-
+  handleOnchange = e => {
+    this.todoText = e.target.value;
+  };
   renderMessage = () => {
     if (this.props.isEditable) {
       return (
@@ -21,6 +25,7 @@ class EditableText extends Component {
           className="update-text"
           type="text"
           onKeyDown={this.handleEdit}
+          onChange={this.handleOnchange}
         />
       );
     }

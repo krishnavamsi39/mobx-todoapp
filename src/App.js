@@ -8,6 +8,7 @@ var todoStore = new Todostore();
 function App() {
   return (
     <div className="App">
+      <span class="heading">todos</span>
       <TodoApplication todoStore={todoStore} />
     </div>
   );

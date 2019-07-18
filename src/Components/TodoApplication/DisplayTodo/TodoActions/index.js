@@ -7,7 +7,9 @@ class TodoActions extends Component {
   handleClick = e => {
     this.props.toggleFooter(e.target.value);
   };
-
+  clearCompleted = () => {
+    this.props.todoStore.clearCompleted();
+  };
   displayButtons = () => {
     let allclass = "action-button";
     let activeclass = "action-button";
@@ -40,9 +42,39 @@ class TodoActions extends Component {
       </div>
     );
   };
+  displayItemCount = () => {
+    const c = this.props.todoStore.itemCount;
 
+    return <span className="item-count">{c} Items left</span>;
+  };
+
+  displayClearButton = () => {
+    let c = 0;
+    const todos = this.props.todoStore.todolist;
+
+    todos.map(todo => {
+      if (todo.isCompleted) c += 1;
+    });
+    if (c > 0)
+      return (
+        <div class="completed">
+          <input
+            type="button"
+            className="action-button"
+            value="Clear completed"
+            onClick={this.clearCompleted}
+          />
+        </div>
+      );
+  };
   render() {
-    return <div className="footer">{this.displayButtons()}</div>;
+    return (
+      <div className="footer">
+        {this.displayItemCount()}
+        {this.displayButtons()}
+        {this.displayClearButton()}
+      </div>
+    );
   }
 }
 export default TodoActions;
